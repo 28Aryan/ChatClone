@@ -36,7 +36,7 @@
         app:layout_constraintVertical_bias="0.416" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/editEmail"
         android:layout_width="@dimen/_260sdp"
         android:layout_height="@dimen/_52sdp"
         android:ems="10"
@@ -70,7 +70,7 @@
         app:layout_constraintVertical_bias="0.734" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/editPassword"
         android:layout_width="@dimen/_260sdp"
         android:layout_height="@dimen/_52sdp"
         android:ems="10"
@@ -121,7 +121,7 @@
         app:layout_constraintVertical_bias="0.51" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/logButton"
         android:layout_width="@dimen/_260sdp"
         android:layout_height="@dimen/_44sdp"
         android:backgroundTint="@color/black"
