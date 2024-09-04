@@ -1,4 +1,5 @@
 package com.example.chatclone;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -40,12 +41,20 @@ public class Registration extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseDatabase db;
     FirebaseStorage store;
-
+    ProgressDialog pd,pd1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+
+        pd = new ProgressDialog(this);
+        pd.setMessage("Establishing Connection!!");
+        pd.setCancelable(false);
+
+        pd1 = new ProgressDialog(this);
+        pd1.setMessage("Redirecting to Login");
+        pd1.setCancelable(false);
 
         register = findViewById(R.id.buttonRegister);
         username = findViewById(R.id.editUsername);
@@ -63,6 +72,7 @@ public class Registration extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                pd1.show();
                 Intent i = new Intent(Registration.this, Login.class);
                 startActivity(i);
                 finish();
@@ -81,15 +91,23 @@ public class Registration extends AppCompatActivity {
 
 //                Checking for Empty cells
                 if(TextUtils.isEmpty(User) || TextUtils.isEmpty(Email) || TextUtils.isEmpty(Pass) || TextUtils.isEmpty(PassC)){
+                    pd.dismiss();
+                    pd1.dismiss();
                     Toast.makeText(Registration.this, "Enter all credentials", Toast.LENGTH_SHORT).show();
 
                 } else if (!Email.matches(emailPattern)) {  //Checking email pattern using its regex
+                    pd.dismiss();
+                    pd1.dismiss();
                     email.setError("Invalid email!");
 
                 } else if (Pass.length() < 6) {
+                    pd.dismiss();
+                    pd1.dismiss();
                     pass.setError("Password must be greater than 6 characters!");
 
                 } else if (!Pass.equals(PassC)) {
+                    pd1.dismiss();
+                    pd.dismiss();
                     passConfirm.setError("Incorrect password");
 
                 }else {
@@ -121,6 +139,8 @@ public class Registration extends AppCompatActivity {
                                                             public void onComplete(@NonNull Task<Void> task) {
 
                                                                 if(task.isSuccessful()){
+                                                                    pd1.dismiss();
+                                                                    pd.show();
                                                                     Intent i = new Intent(Registration.this, MainActivity.class);
                                                                     startActivity(i);
                                                                     finish();
@@ -146,6 +166,7 @@ public class Registration extends AppCompatActivity {
                                         public void onComplete(@NonNull Task<Void> task) {
 
                                             if(task.isSuccessful()){
+                                                pd.show();
                                                 Intent i = new Intent(Registration.this, MainActivity.class);
                                                 startActivity(i);
                                                 finish();

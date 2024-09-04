@@ -150,7 +150,7 @@
         app:layout_constraintVertical_bias="0.957" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/signUp"
         android:layout_width="@dimen/_260sdp"
         android:layout_height="@dimen/_24sdp"
         android:gravity="center"
