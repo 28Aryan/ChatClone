@@ -9,7 +9,7 @@
     tools:context=".Splash">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageSplash"
         android:layout_width="@dimen/_160sdp"
         android:layout_height="@dimen/_84sdp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,6 +21,7 @@
         app:srcCompat="@drawable/av" />
 
     <TextView
+        android:id="@+id/textSplash"
         android:layout_width="@dimen/_337sdp"
         android:layout_height="@dimen/_103sdp"
         android:fontFamily="@font/apptext"
