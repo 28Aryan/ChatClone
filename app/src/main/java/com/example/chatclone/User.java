@@ -5,6 +5,9 @@ package com.example.chatclone;
 public class User {
     String userId, userName, email, password, profilePic, lastMes, status;
 
+//    Constructor is important otherwise data wont be loaded into the recycler view
+    public User(){}
+
     public String getUserId() {
         return userId;
     }
