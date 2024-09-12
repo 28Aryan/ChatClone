@@ -1,6 +1,10 @@
 package com.example.chatclone;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView userRecyclerview;
     UserAdapter adapter;
     ArrayList<User> userArrayList;
+    ImageView userLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +70,35 @@ public class MainActivity extends AppCompatActivity {
         userRecyclerview.setLayoutManager(new LinearLayoutManager(this));
         adapter = new UserAdapter(MainActivity.this,userArrayList);
         userRecyclerview.setAdapter(adapter);
+        userLogout = findViewById(R.id.logout);
+
+        userLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Dialog dialog = new Dialog(MainActivity.this,R.style.dialog);
+                dialog.setContentView(R.layout.dialog_layout);
+                Button no,yes;
+                yes = dialog.findViewById(R.id.yesBtn);
+                no = dialog.findViewById(R.id.noBtn);
+
+                yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        FirebaseAuth.getInstance().signOut();
+                        Intent i = new Intent(MainActivity.this, Login.class);
+                        startActivity(i);
+                    }
+                });
+
+                no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+            }
+        });
 
 //      gets the current user if not logged in then redirects it to login page.
         if(auth.getCurrentUser() == null){

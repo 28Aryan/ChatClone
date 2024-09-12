@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.ChatClone" parent="Base.Theme.ChatClone" />
+    <style name="dialog">
+        <item name="android:windowBackground">@drawable/emptybackground</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowMinWidthMajor">80%</item>
+        <item name="windowActionBar">false</item>
+    </style>
 </resources>
