@@ -1,5 +1,6 @@
 package com.example.chatclone;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,18 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.viewholder> {
 
 //        Load the user's profile picture from the URL and set it into the ImageView using Picasso
         Picasso.get().load(users.profilePic).into(holder.profilerg);
+
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(mainActivity, ChatWindow.class);
+                i.putExtra("Name",users.getUserName());
+                i.putExtra("ReceiveImg",users.getProfilePic());
+                i.putExtra("Uid",users.getUserId());
+                mainActivity.startActivity(i);
+            }
+        });
     }
 
     @Override
